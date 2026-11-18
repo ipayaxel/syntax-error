@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102b22">
+<meta name="description" content="EcoLearn — platform belajar dan aksi nyata untuk bumi yang lebih hijau.">
+<title>EcoLearn — Learn Better, Live Greener</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+:root{--bg:#f8f7f0;--paper:#fffefa;--ink:#19352c;--muted:#6e7d75;--green:#207653;--lime:#d6f36b;--line:#e6e8dc;--dark:#102b22;--orange:#ff9c5b;--pink:#ffb7c5;--blue:#8ed9e8;--purple:#b8a4f5;--yellow:#ffe27a;--shadow:0 18px 55px rgba(23,55,43,.10);--radius:24px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.6}button,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}.eyebrow:before{content:"";width:22px;height:2px;background:var(--green)}h1,h2,h3,h4{font-family:"Plus Jakarta Sans",sans-serif;line-height:1.15;letter-spacing:-.035em;margin:0}h2{font-size:clamp(2rem,4vw,3.1rem)}p{color:var(--muted)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 20px;border-radius:999px;border:1px solid transparent;background:var(--green);color:white;font-weight:700;cursor:pointer;transition:.2s}.btn:hover{transform:translateY(-2px);background:#174f36;box-shadow:0 10px 24px #236b4b30}.btn.light{background:var(--paper);color:var(--ink);border-color:var(--line)}.btn.light:hover{background:#f0f5e9}.btn.small{padding:10px 15px;font-size:.88rem}.icon-btn{width:42px;height:42px;border:1px solid var(--line);background:var(--paper);border-radius:50%;cursor:pointer;color:var(--ink)}
+/* navigation */
+header{position:sticky;top:0;z-index:20;background:#f5f7efdf;backdrop-filter:blur(16px);border-bottom:1px solid #e3e9ddc9}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:10px;font-family:"Plus Jakarta Sans";font-weight:800;font-size:1.25rem;letter-spacing:-.04em}.brand-mark{width:38px;height:38px;border-radius:13px;background:var(--green);color:var(--lime);display:grid;place-items:center;font-size:1.2rem}.navlinks{display:flex;align-items:center;gap:28px;color:#63746a;font-size:.92rem;font-weight:600}.navlinks a:hover{color:var(--green)}.navright{display:flex;align-items:center;gap:10px}.menu-toggle{display:none}
+/* hero */
+.hero{padding:72px 0 64px;overflow:hidden;position:relative}.hero-grid{display:grid;grid-template-columns:1.03fr .97fr;align-items:center;gap:46px}.hero h1{font-size:clamp(3rem,6.2vw,5.5rem);margin:18px 0 20px;max-width:680px}.hero h1 span{color:var(--green);position:relative;white-space:nowrap}.hero-copy>p{font-size:1.1rem;max-width:520px;line-height:1.8}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 32px}.trust{display:flex;align-items:center;gap:13px;font-size:.85rem;color:var(--muted)}.avatars{display:flex}.avatars span{width:30px;height:30px;border:2px solid var(--bg);border-radius:50%;display:grid;place-items:center;background:#dce9cb;margin-left:-7px;font-size:.85rem}.avatars span:first-child{margin-left:0}.hero-art{min-height:490px;position:relative;display:grid;place-items:center}.art-blob{position:absolute;width:410px;height:410px;border-radius:48% 52% 62% 38% / 43% 43% 57% 57%;background:#dcebbd;transform:rotate(-12deg)}.hero-photo{position:relative;width:min(100%,450px);height:440px;border-radius:48% 48% 26px 26px;overflow:hidden;background:linear-gradient(145deg,#aacb8b,#315d42);box-shadow:var(--shadow)}.hero-photo img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;opacity:.88}.photo-overlay{position:absolute;inset:0;background:linear-gradient(0deg,#102b2270,transparent 55%)}.floating-card{position:absolute;background:var(--paper);border:1px solid #ffffffb5;border-radius:18px;padding:15px 18px;box-shadow:var(--shadow)}.float-one{left:-12px;bottom:68px}.float-two{right:-12px;top:64px}.float-label{font-size:.72rem;color:var(--muted)}.float-value{font-family:"Plus Jakarta Sans";font-size:1.5rem;font-weight:800}.float-icon{display:inline-grid;place-items:center;width:34px;height:34px;background:#e9f3d8;border-radius:11px;margin-right:8px}
+/* stats */
+.stats{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);background:var(--dark);border-radius:22px;padding:24px 28px;color:white;gap:15px}.stat{padding:5px 18px;border-right:1px solid #ffffff25}.stat:last-child{border:0}.stat strong{font-family:"Plus Jakarta Sans";font-size:1.8rem;display:block;color:var(--lime)}.stat span{font-size:.82rem;color:#c0d0c6}
+/* sections */
+section{padding:100px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:38px}.section-head p{max-width:430px;margin:0}.section-head h2{margin-top:12px}.text-link{font-weight:800;color:var(--green);font-size:.9rem}.text-link:hover{text-decoration:underline}.learning-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}.learn-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:23px;transition:.25s;min-height:240px}.learn-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#c5d8bd}.learn-icon{width:52px;height:52px;border-radius:16px;background:#edf4df;display:grid;place-items:center;font-size:1.55rem;margin-bottom:25px}.learn-card h3{font-size:1.12rem}.learn-card p{font-size:.9rem;line-height:1.7}.learn-card a{font-size:.85rem;font-weight:800;color:var(--green)}
+/* feature split */
+.feature-section{background:#eaf0df}.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center}.feature-visual{min-height:420px;border-radius:28px;background:#d0e1b9;position:relative;overflow:hidden;padding:28px;display:flex;align-items:end}.feature-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82}.feature-note{position:relative;background:#fffefaed;backdrop-filter:blur(8px);padding:19px 22px;border-radius:17px;max-width:270px}.feature-note strong{font-family:"Plus Jakarta Sans";font-size:1.3rem;display:block}.feature-copy h2{margin:14px 0 18px}.feature-copy>p{line-height:1.8}.check-list{list-style:none;padding:0;margin:25px 0;display:grid;gap:13px}.check-list li{display:flex;gap:12px;align-items:start;font-weight:600}.check{width:23px;height:23px;flex:none;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-size:.75rem}
+/* interactive lab */
+.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:27px}.panel h3{font-size:1.35rem}.panel>p{font-size:.9rem}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.tab{padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);font-weight:700;cursor:pointer}.tab.active{background:var(--green);border-color:var(--green);color:white}.lesson-content{background:#f2f6e9;border-radius:16px;padding:19px}.lesson-content h4{font-size:1.08rem}.lesson-content ul{padding-left:20px;color:var(--muted);font-size:.9rem}.lesson-content .tip{font-size:.88rem;color:var(--green);font-weight:700;margin-bottom:0}
+.game-item{background:#f2f6e9;border-radius:18px;padding:20px;text-align:center;margin:20px 0}.game-emoji{font-size:3.6rem;display:block}.game-name{font-weight:800;margin-top:6px}.bins{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.bin{background:white;border:1px solid var(--line);border-radius:14px;padding:13px 6px;cursor:pointer;font-weight:700;color:var(--ink)}.bin:hover{border-color:var(--green);background:#f4f8ed}.bin span{display:block;font-size:1.45rem}.feedback{min-height:26px;text-align:center;font-size:.9rem;font-weight:700;margin:12px 0 0}.score-row{display:flex;justify-content:space-between;color:var(--muted);font-size:.86rem}.score-row b{color:var(--green)}
+/* quiz and calculator */
+.quiz-options{display:grid;gap:9px;margin:18px 0}.quiz-option{padding:13px 15px;border-radius:13px;border:1px solid var(--line);background:white;text-align:left;cursor:pointer;color:var(--ink)}.quiz-option:hover:not(:disabled){border-color:var(--green)}.quiz-option.correct{background:#e8f4d9;border-color:#82b45e}.quiz-option.incorrect{background:#fff0e8;border-color:#e5a27d}.progress{height:7px;background:#e8eee2;border-radius:9px;overflow:hidden;margin:17px 0}.progress span{display:block;height:100%;background:var(--green);width:0;transition:.3s}.range-row{margin:19px 0}.range-top{display:flex;justify-content:space-between;font-size:.9rem;font-weight:700}.range-top output{color:var(--green)}input[type=range]{width:100%;accent-color:var(--green);margin-top:12px}.impact-result{background:var(--dark);border-radius:17px;padding:20px;color:white;margin-top:20px}.impact-result p{color:#c0d0c6;margin:5px 0}.impact-result strong{font-family:"Plus Jakarta Sans";font-size:2rem;color:var(--lime)}
+/* challenge */
+.challenge{background:var(--dark);color:white;position:relative;overflow:hidden}.challenge:after{content:"🌿";position:absolute;font-size:18rem;right:-20px;bottom:-100px;opacity:.08;transform:rotate(-20deg)}.challenge .eyebrow{color:var(--lime)}.challenge .eyebrow:before{background:var(--lime)}.challenge h2{max-width:650px;margin:15px 0}.challenge p{color:#c0d0c6;max-width:600px}.challenge-grid{display:grid;grid-template-columns:1fr .85fr;gap:50px;align-items:center;position:relative;z-index:1}.challenge-card{background:#ffffff12;border:1px solid #ffffff25;border-radius:23px;padding:25px}.challenge-card h3{margin-bottom:16px}.challenge-list{display:grid;gap:11px}.challenge-list label{display:flex;align-items:center;gap:11px;padding:12px;border-radius:12px;background:#ffffff0d;cursor:pointer;font-size:.92rem}.challenge-list input{width:18px;height:18px;accent-color:var(--lime)}.challenge-progress{height:8px;background:#ffffff25;border-radius:8px;margin:18px 0 8px;overflow:hidden}.challenge-progress span{height:100%;display:block;background:var(--lime);width:0;transition:.3s}.challenge-foot{display:flex;justify-content:space-between;font-size:.82rem;color:#c0d0c6}
+/* footer */
+footer{padding:55px 0 25px;background:#0b2119;color:white}.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:45px;padding-bottom:38px}.footer-brand p{color:#a8b9ae;max-width:310px;font-size:.9rem}.footer-col h4{font-size:.95rem;margin-bottom:15px}.footer-col a{display:block;color:#a8b9ae;font-size:.88rem;margin:9px 0}.footer-col a:hover{color:var(--lime)}.copyright{border-top:1px solid #ffffff20;padding-top:20px;color:#91a69a;font-size:.8rem;display:flex;justify-content:space-between;gap:15px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:var(--dark);color:white;padding:12px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.25s;z-index:50;font-size:.9rem}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.hero-grid,.feature-grid,.challenge-grid{grid-template-columns:1fr}.hero-art{min-height:430px}.hero-copy{text-align:center}.hero-copy>p{margin-inline:auto}.hero-actions,.trust{justify-content:center}.learning-grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border:0}.lab-grid{grid-template-columns:1fr}.feature-visual{min-height:350px}.challenge-grid{gap:25px}}
+@media(max-width:650px){.wrap{width:min(100% - 30px,1160px)}.nav{height:66px}.navlinks{display:none;position:absolute;top:66px;left:0;right:0;background:var(--bg);padding:18px 22px 22px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line);gap:17px}.navlinks.open{display:flex}.navright .btn{display:none}.menu-toggle{display:grid;place-items:center}.hero{padding:48px 0 35px}.hero h1{font-size:clamp(2.65rem,13vw,4rem)}.hero-art{min-height:340px}.hero-photo{height:330px;width:85%}.art-blob{width:300px;height:300px}.float-one{left:0;bottom:28px}.float-two{right:0;top:28px}.stats{padding:18px 12px}.stat{padding:5px 10px}.stat strong{font-size:1.45rem}.stat span{font-size:.74rem}section{padding:70px 0}.section-head{display:block}.section-head p{margin-top:12px}.learning-grid{grid-template-columns:1fr 1fr;gap:10px}.learn-card{padding:17px;min-height:220px}.learn-icon{margin-bottom:17px}.learn-card h3{font-size:1rem}.learn-card p{font-size:.82rem}.panel{padding:19px}.bins{gap:6px}.bin{font-size:.8rem}.feature-visual{min-height:290px}.challenge-card{padding:18px}.footer-grid{grid-template-columns:1fr 1fr;gap:25px}.footer-brand{grid-column:1/-1}.copyright{display:block}.copyright span{display:block;margin-top:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+
+/* refinement: editorial details, motion, and responsive polish */
+body{background-image:radial-gradient(#d8e4d0 0.65px,transparent .65px);background-size:18px 18px}
+.hero,.feature-section,.challenge,footer{background-image:none}
+.hero{isolation:isolate}
+.hero:before{content:"";position:absolute;z-index:-1;left:-170px;top:70px;width:340px;height:340px;border:1px solid #dce8d5;border-radius:50%;box-shadow:0 0 0 34px #edf2e7,0 0 0 68px #eff3e9;opacity:.7}
+.hero-photo{animation:photoRise .9s cubic-bezier(.2,.8,.2,1) both}
+.float-one{animation:floatCard 5s ease-in-out infinite}
+.float-two{animation:floatCard 6s ease-in-out -2s infinite}
+@keyframes photoRise{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.learn-card,.panel,.feature-note,.challenge-card{box-shadow:0 5px 18px rgba(23,55,43,.035)}
+.learn-card:nth-child(2){transition-delay:.07s}.learn-card:nth-child(3){transition-delay:.14s}.learn-card:nth-child(4){transition-delay:.21s}
+.learn-card:after{content:"";display:block;width:0;height:2px;background:var(--green);transition:width .3s;margin-top:13px}
+.learn-card:hover:after{width:42px}
+.eyebrow{letter-spacing:.14em}
+.section-kicker{display:flex;align-items:center;gap:12px;margin-bottom:14px;color:var(--muted);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.section-kicker:after{content:"";height:1px;background:var(--line);width:48px}
+.journal{background:#f0f3e9}
+.journal-grid{display:grid;grid-template-columns:1.15fr .85fr .85fr;gap:17px}
+.story{background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.25s}
+.story:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.story-image{height:190px;overflow:hidden;background:#dce8d0}
+.story-image img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.story:hover .story-image img{transform:scale(1.05)}
+.story-body{padding:20px}
+.story-tag{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--green)}
+.story h3{font-size:1.12rem;margin:8px 0}
+.story p{font-size:.87rem;margin:0 0 14px}
+.story button{border:0;background:none;padding:0;color:var(--green);font-weight:800;cursor:pointer}
+.story.featured .story-image{height:235px}
+.story.featured h3{font-size:1.35rem}
+.points-strip{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;background:#e6efd9;border:1px solid #d5e3c8;border-radius:20px;padding:21px 24px;margin-top:24px}
+.points-left{display:flex;align-items:center;gap:15px}
+.points-medal{width:48px;height:48px;border-radius:16px;background:var(--green);color:var(--lime);display:grid;place-items:center;font-size:1.5rem}
+.points-number{font-family:"Plus Jakarta Sans";font-weight:800;font-size:1.55rem}
+.points-caption{font-size:.8rem;color:var(--muted)}
+.points-track{height:7px;background:#cfddc4;border-radius:10px;overflow:hidden;margin-top:7px;max-width:320px}
+.points-track span{height:100%;width:0;display:block;background:var(--green);transition:width .5s}
+.points-level{text-align:right;font-size:.82rem;color:var(--muted)}
+.points-level strong{display:block;color:var(--green);font-family:"Plus Jakarta Sans"}
+.article-modal{position:fixed;inset:0;z-index:60;background:#0b2119a8;display:none;align-items:center;justify-content:center;padding:20px}
+.article-modal.open{display:flex}
+.modal-card{width:min(560px,100%);max-height:85vh;overflow:auto;background:var(--paper);border-radius:24px;padding:28px;box-shadow:0 25px 80px #0004;animation:modalIn .25s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+.modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.modal-close{border:1px solid var(--line);background:white;width:36px;height:36px;border-radius:50%;cursor:pointer}
+.modal-card h3{font-size:1.65rem;margin:8px 0 14px}
+.modal-card p{line-height:1.8}
+.back-top{position:fixed;right:22px;bottom:22px;width:44px;height:44px;border:0;border-radius:50%;background:var(--green);color:white;box-shadow:var(--shadow);cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.25s;z-index:25}
+.back-top.show{opacity:1;pointer-events:auto;transform:none}
+.navlinks a.active{color:var(--green);position:relative}
+.navlinks a.active:after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:2px;background:var(--green)}
+.game-item{transition:transform .2s}
+.game-item.bump{animation:bump .28s ease}
+@keyframes bump{50%{transform:scale(1.035)}}
+.btn:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #9fc66f;outline-offset:3px}
+@media(max-width:900px){.journal-grid{grid-template-columns:1fr 1fr}.story.featured{grid-column:1/-1}.story.featured .story-image{height:220px}}
+@media(max-width:650px){.journal-grid{grid-template-columns:1fr}.story.featured{grid-column:auto}.points-strip{grid-template-columns:1fr}.points-level{text-align:left}.hero:before{display:none}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.float-one,.float-two,.hero-photo{animation:none}}
+
+
+/* COLORFUL UPDATE — playful but still readable for a broad audience */
+:root{scrollbar-color:#8fbd72 #f1f2e9}
+.hero{background:radial-gradient(circle at 8% 15%,#fff0c7 0,transparent 24%),radial-gradient(circle at 92% 10%,#dff5ed 0,transparent 25%)}
+.hero h1 span{background:linear-gradient(100deg,#1f8058,#65a94e 55%,#e79b42);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-mark{background:linear-gradient(145deg,#207653,#8dbf4e);box-shadow:0 7px 18px #20765335}
+.btn{background:linear-gradient(110deg,#207653,#4b9b60)}
+.btn:hover{background:linear-gradient(110deg,#175b3d,#347c4b)}
+.btn.light{background:#fffefa}
+.stats{background:linear-gradient(110deg,#102b22,#1d5940 65%,#276d4b)}
+.stat:nth-child(2) strong{color:#ffbf79}.stat:nth-child(3) strong{color:#a8e4ef}.stat:nth-child(4) strong{color:#ffb7c5}
+.learn-card:nth-child(1) .learn-icon{background:#e4f3d6}
+.learn-card:nth-child(2) .learn-icon{background:#dff4f6}
+.learn-card:nth-child(3) .learn-icon{background:#ffe8df}
+.learn-card:nth-child(4) .learn-icon{background:#eee8ff}
+.feature-section{background:linear-gradient(120deg,#eaf5e8,#e6f3f5 58%,#fff0df)}
+.feature-note{border:1px solid #ffffff}
+.panel{box-shadow:0 12px 32px #17372b0b}
+.tab.active{background:linear-gradient(110deg,#207653,#5d9d54)}
+.challenge{background:radial-gradient(circle at 85% 20%,#286c50 0,transparent 32%),#102b22}
+.challenge-card{background:#ffffff17;backdrop-filter:blur(10px)}
+.journal{background:linear-gradient(130deg,#fff3df,#f1edff 55%,#e5f4ec)}
+.story:nth-child(2) .story-tag{color:#d06e3d}.story:nth-child(3) .story-tag{color:#6c58b5}
+.story-image{position:relative}.story-image:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#102b2240);pointer-events:none}
+.gallery-section{background:#fffefa}
+.gallery-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:190px 190px;gap:14px}
+.gallery-tile{position:relative;border-radius:22px;overflow:hidden;isolation:isolate;background:#dce9d8}
+.gallery-tile:first-child{grid-row:span 2}
+.gallery-tile img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.gallery-tile:hover img{transform:scale(1.07)}
+.gallery-tile:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#0b2119b8);z-index:0}
+.gallery-caption{position:absolute;z-index:1;left:20px;right:20px;bottom:17px;color:#fff}
+.gallery-caption b{display:block;font:800 1.15rem "Plus Jakarta Sans"}
+.gallery-caption span{font-size:.8rem;color:#e4eee7}
+.eco-personality{background:linear-gradient(120deg,#fff0e6,#f1edff 55%,#e6f5ed);padding:80px 0}
+.personality-card{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;background:#fffefa;border:1px solid #fff;border-radius:28px;padding:clamp(22px,4vw,42px);box-shadow:var(--shadow)}
+.personality-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.personality-option{border:1px solid var(--line);background:#fff;border-radius:16px;padding:16px 10px;cursor:pointer;text-align:center;font-weight:700;color:var(--ink);transition:.2s}
+.personality-option span{display:block;font-size:1.8rem;margin-bottom:7px}
+.personality-option:hover,.personality-option.selected{transform:translateY(-4px);border-color:#7eb66d;background:#f1f8e9;box-shadow:0 8px 20px #20765315}
+.personality-result{min-height:125px;border-radius:18px;background:linear-gradient(130deg,#e9f4df,#e3f3f5);padding:20px}
+.personality-result strong{display:block;font:800 1.15rem "Plus Jakarta Sans";margin-bottom:6px}
+.mini-badge{display:inline-flex;align-items:center;gap:6px;background:#fff;border-radius:999px;padding:7px 11px;font-size:.76rem;font-weight:800;color:#286b4d;margin-top:12px}
+.floating-leaf{position:absolute;z-index:2;font-size:2rem;filter:drop-shadow(0 8px 10px #17372b20);animation:leafDrift 6s ease-in-out infinite}
+.leaf-a{top:10%;left:4%}.leaf-b{right:4%;bottom:14%;animation-delay:-2s}
+@keyframes leafDrift{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-15px) rotate(9deg)}}
+@media(max-width:800px){.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:180px 180px}.gallery-tile:first-child{grid-row:auto;grid-column:span 2}.personality-card{grid-template-columns:1fr}}
+@media(max-width:520px){.gallery-grid{grid-template-columns:1fr;grid-template-rows:220px 170px 170px 170px}.gallery-tile:first-child{grid-column:auto}.personality-options{gap:6px}.personality-option{font-size:.78rem;padding:12px 5px}}
+@media(prefers-reduced-motion:reduce){.floating-leaf{animation:none}.gallery-tile img{transition:none}}
+
+
+/* ===== v2 upgrade ===== */
+#prog{position:fixed;top:0;left:0;height:4px;width:0;z-index:60;background:linear-gradient(90deg,var(--lime),var(--green),var(--orange))}
+#leaves{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.hero .wrap{position:relative;z-index:1}
+.hero h1 span{background:linear-gradient(90deg,var(--green),#5bb37f,var(--orange),var(--green));background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:250% center}}
+.art-blob{animation:morph 9s ease-in-out infinite}
+@keyframes morph{50%{border-radius:60% 40% 38% 62%/55% 60% 40% 45%;transform:rotate(8deg) scale(1.05)}}
+.btn{position:relative;overflow:hidden}.btn:active{transform:scale(.96)}
+.marquee{background:var(--green);color:var(--lime);padding:14px 0;overflow:hidden;white-space:nowrap;transform:rotate(-1.2deg);margin:10px -10px 0}
+.marquee div{display:inline-flex;gap:40px;animation:scrollx 28s linear infinite;font-family:"Plus Jakarta Sans";font-weight:800;letter-spacing:.04em}
+.marquee:hover div{animation-play-state:paused}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+.learn-card{position:relative;transform-style:preserve-3d;will-change:transform}
+.learn-icon{transition:.35s}.learn-card:hover .learn-icon{transform:rotate(-10deg) scale(1.15);background:var(--lime)}
+.stat strong{transition:.3s}.stat:hover strong{transform:scale(1.12);transform-origin:left}
+.dark-btn{font-size:1.05rem}
+/* decompose */
+.decay{background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:30px;box-shadow:var(--shadow)}
+.decay-row{display:grid;grid-template-columns:150px 1fr 120px;gap:16px;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line)}
+.decay-row:last-child{border:0}.decay-row b{font-family:"Plus Jakarta Sans"}
+.bar{height:16px;border-radius:99px;background:#e8eee2;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--lime),var(--green));transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.bar i.hot{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.decay-row em{font-style:normal;font-weight:800;color:var(--green);text-align:right;font-size:.9rem}
+.decay small{display:block;margin-top:14px;color:var(--muted)}
+/* flip */
+.flip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.flip{perspective:900px;height:250px;cursor:pointer;border:0;background:none;padding:0;text-align:left;color:inherit}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:22px;padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.face.f{background:var(--c);color:#19352c}.face.f span{font-size:3rem}.face.f h3{font-size:1.2rem}.face.f small{font-weight:700;opacity:.7}
+.face.b{transform:rotateY(180deg);background:var(--dark);color:white}.face.b p{color:#d4e2d9;font-size:.95rem;margin:0}.face.b strong{font-family:"Plus Jakarta Sans";font-size:2.2rem;color:var(--lime)}
+/* faq */
+.faq{max-width:820px;margin:auto}
+.faq details{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 22px;margin-bottom:12px;transition:.25s}
+.faq details[open]{border-color:var(--green);box-shadow:var(--shadow)}
+.faq summary{cursor:pointer;font-weight:800;font-family:"Plus Jakarta Sans";list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--green);font-size:1.4rem;line-height:1;transition:.3s}
+.faq details[open] summary::after{transform:rotate(45deg)}.faq details p{margin:12px 0 0}
+/* join */
+.join{background:linear-gradient(135deg,var(--green),#174f36);color:white;border-radius:30px;padding:54px;text-align:center;position:relative;overflow:hidden}
+.join h2{margin:12px 0}.join p{color:#d4e8dc;max-width:520px;margin:0 auto 24px}.join .eyebrow{color:var(--lime)}.join .eyebrow:before{background:var(--lime)}
+.join form{display:flex;gap:10px;max-width:460px;margin:auto;flex-wrap:wrap;justify-content:center}
+.join input{flex:1;min-width:200px;padding:13px 18px;border-radius:999px;border:0;outline:0}
+.join .btn{background:var(--lime);color:var(--dark)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:80}
+/* dark */
+[data-theme=dark]{--bg:#0d1d16;--paper:#15302499;--ink:#e8f1e6;--muted:#9fb4a7;--line:#26443a;--shadow:0 18px 55px rgba(0,0,0,.35)}
+[data-theme=dark] header{background:#0d1d16e0}
+[data-theme=dark] body{background-image:radial-gradient(#183328 .65px,transparent .65px)}
+[data-theme=dark] .feature-section,[data-theme=dark] .journal{background:#112a20}
+[data-theme=dark] .bin,[data-theme=dark] .quiz-option{background:#1b392d;color:var(--ink)}
+[data-theme=dark] .lesson-content,[data-theme=dark] .game-item{background:#1b392d}
+[data-theme=dark] .bar{background:#244236}[data-theme=dark] .hero:before{display:none}
+[data-theme=dark] .btn.light,[data-theme=dark] .icon-btn{background:#1b392d;color:var(--ink)}
+[data-theme=dark] .face.f{color:#19352c}
+@media(max-width:900px){.flip-grid{grid-template-columns:repeat(2,1fr)}.decay-row{grid-template-columns:1fr 90px}.decay-row .bar{grid-column:1/-1;order:3}}
+@media(max-width:520px){.flip-grid{grid-template-columns:1fr}.join{padding:36px 20px}}
+
+/* ===== v3 cerah & berkarakter ===== */
+:root{--bg:#fff6e0;--paper:#fff;--ink:#2a2140;--muted:#5f5877;--green:#14b86a;--lime:#c8ee4a;--line:#2a2140;--dark:#2a2140;--orange:#ff8a5b;--pink:#ffb7c5;--blue:#8fe3ff;--purple:#b8a4f5;--yellow:#ffd23f;--shadow:5px 5px 0 #2a2140;--radius:18px}
+body{font-family:"Nunito",sans-serif;background-image:none;font-weight:600}
+h1,h2,h3,h4,.brand,.float-value,.stat strong{font-family:"Fredoka",sans-serif;letter-spacing:-.01em;font-weight:600}
+.dark-btn{display:none}
+header{background:#fff6e0ee;border-bottom:3px solid var(--ink)}
+.brand-mark{background:var(--yellow);color:var(--ink);border:3px solid var(--ink);border-radius:12px;box-shadow:3px 3px 0 var(--ink)}
+.btn{background:var(--green);color:var(--ink);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-weight:800}
+.btn:hover{background:#2fd884;transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.light{background:#fff}.btn.light:hover{background:var(--yellow)}.icon-btn{border:3px solid var(--ink);background:#fff}
+.navlinks a{color:var(--ink)}.navlinks a:hover,.navlinks a.active{color:#6c4dff}
+.eyebrow{color:var(--ink);background:var(--pink);padding:4px 12px;border:2px solid var(--ink);border-radius:99px}.eyebrow:before{display:none}
+.hero:before,.photo-overlay,.story-image:after{display:none}
+.hero h1 span{background:linear-gradient(transparent 62%,var(--yellow) 62%);-webkit-text-fill-color:var(--ink);color:var(--ink);animation:none;white-space:normal}
+.art-blob{background:var(--yellow);border:3px solid var(--ink);animation:none;border-radius:50%;width:380px;height:380px;transform:rotate(0)}
+.hero-photo{border-radius:30px;border:4px solid var(--ink);box-shadow:8px 8px 0 var(--ink);height:400px;transform:rotate(2deg);background:var(--blue)}
+.hero-photo img{mix-blend-mode:normal;opacity:1}
+.floating-card{border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);border-radius:16px}.float-one{background:var(--lime)}.float-two{background:var(--pink)}
+.sticker{position:absolute;right:6%;bottom:30px;background:#ff6b6b;color:#fff;font-family:"Fredoka";font-weight:600;text-align:center;padding:14px 16px;border:3px solid var(--ink);border-radius:50%;transform:rotate(-12deg);box-shadow:4px 4px 0 var(--ink);z-index:3;font-size:.9rem;line-height:1.2}
+.stats{background:var(--blue);color:var(--ink);border:3px solid var(--ink);box-shadow:var(--shadow)}.stat{border-color:#2a214055}.stat strong{color:#6c4dff}.stat span{color:var(--ink)}
+.marquee{background:var(--pink);color:var(--ink);border-block:3px solid var(--ink);transform:rotate(-1deg)}
+.learn-card,.panel,.story,.decay,.faq details,.challenge-card,.gallery-tile,.feature-visual,.feature-note{border:3px solid var(--ink)!important;box-shadow:var(--shadow);border-radius:20px}
+.learn-card:nth-child(1){background:#d9f7a0}.learn-card:nth-child(2){background:#bdeefb}.learn-card:nth-child(3){background:#ffd0dc}.learn-card:nth-child(4){background:#ffe58a}
+.learn-icon{background:#fff;border:3px solid var(--ink)}.learn-card:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink)}.learn-card p{color:var(--ink)}.learn-card a{color:var(--ink);text-decoration:underline}
+.feature-section{background:var(--blue)}.journal{background:#ffe58a}.eco-personality{background:#ffd0dc}.gallery-section{background:#d9f7a0}
+.feature-section,.journal,.eco-personality,.gallery-section{border-block:3px solid var(--ink)}
+.tab{border:2px solid var(--ink);color:var(--ink);background:#fff}.tab.active{background:#6c4dff;border-color:var(--ink);color:#fff}
+.lesson-content{background:#d9f7a0;border:2px solid var(--ink)}.lesson-content .tip{color:var(--ink)}.game-item{background:#ffe58a;border:2px solid var(--ink)}
+.bin,.quiz-option{border:2px solid var(--ink)}.bin:hover{background:var(--lime)}.progress{border:2px solid var(--ink);background:#fff}.progress span{background:#ff6b6b}
+.impact-result{background:#6c4dff;border:3px solid var(--ink)}
+.challenge{background:var(--orange);color:var(--ink);border-block:3px solid var(--ink)}.challenge:after{opacity:.2}.challenge .eyebrow{background:#fff}.challenge p,.challenge-foot{color:var(--ink)}
+.challenge-card{background:#fff}.challenge-card h3{color:var(--ink)}.challenge-list label{background:#fff6e0;border:2px solid var(--ink);color:var(--ink)}.challenge-progress{background:#fff;border:2px solid var(--ink)}.challenge-progress span{background:var(--green)}
+.bar{background:#fff;border:2px solid var(--ink)}.bar i{background:linear-gradient(90deg,#3ddc84,#c8ee4a)}.bar i.hot{background:linear-gradient(90deg,#ffd23f,#ff6b6b)}.decay-row{border-color:#2a214033}.decay-row em{color:#6c4dff}
+.face{border:3px solid var(--ink)}.face.b{background:#6c4dff}.face.b strong{color:var(--lime)}
+.faq details[open]{background:#fff6e0}.join{background:#6c4dff;border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}.join .eyebrow{background:var(--lime)}.join input{border:3px solid var(--ink)}
+footer{background:var(--yellow);color:var(--ink);border-top:3px solid var(--ink);background-image:radial-gradient(circle at 10px 10px,#ff8a5b55 3px,transparent 4px),radial-gradient(circle at 30px 30px,#6c4dff40 3px,transparent 4px);background-size:40px 40px}
+.footer-brand p,.footer-col a,.copyright{color:var(--ink)}.footer-col a:hover{color:#6c4dff;text-decoration:underline}.copyright{border-color:var(--ink)}
+.toast{background:var(--ink);border:2px solid #fff}
+.team{background:var(--blue);border-block:3px solid var(--ink);padding:80px 0;position:relative;overflow:hidden}
+.team-card{background:#fff;border:3px solid var(--ink);border-radius:28px;box-shadow:8px 8px 0 var(--ink);padding:38px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;max-width:900px;margin:auto}
+.team-logo{width:150px;height:150px;border-radius:32px;background:#6c4dff;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);display:grid;place-items:center;color:var(--lime);font-family:"Fredoka",sans-serif;font-size:3.4rem;font-weight:700;transform:rotate(-6deg);transition:.3s}
+.team-card:hover .team-logo{transform:rotate(4deg) scale(1.06)}
+.team-card h2{font-size:clamp(2.2rem,5vw,3.4rem);margin:12px 0 6px}
+.team-card h2 span{background:linear-gradient(transparent 62%,var(--pink) 62%)}
+.team-card p{color:var(--ink);margin:0 0 16px;font-size:1.05rem}
+.uni{display:inline-flex;align-items:center;gap:10px;background:var(--yellow);border:3px solid var(--ink);border-radius:16px;padding:10px 16px;font-weight:800;box-shadow:3px 3px 0 var(--ink);line-height:1.3}
+.hero-by{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:.82rem;font-weight:800;background:#fff;border:2px solid var(--ink);border-radius:99px;padding:5px 14px}
+@media(max-width:650px){.team-card{grid-template-columns:1fr;text-align:center;padding:28px 20px;justify-items:center}.team-logo{width:110px;height:110px;font-size:2.4rem}.uni{text-align:left}}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet"></head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home"><span class="brand-mark">✳</span> EcoLearn</a>
+    <nav class="navlinks" id="navlinks" aria-label="Navigasi utama">
+      <a href="#belajar">Belajar</a><a href="#fitur">Tentang</a><a href="#lab">Eco Lab</a><a href="#inspirasi">Inspirasi</a><a href="#jelajah">Galeri</a><a href="#gaya-hijau">Gaya hijau</a><a href="#tantangan">Tantangan</a>
+    </nav>
+    <div class="navright"><a class="btn small" href="#lab">Mulai eksplorasi <span>↗</span></a><button class="icon-btn menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button></div>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero">
+ <div class="wrap hero-grid">
+  <div class="hero-copy">
+   <span class="eyebrow">Small steps, greener future</span><br><span class="hero-by">💻 Syntax Error · Universitas Muhammadiyah Prof. Dr. HAMKA</span>
+   <h1>Bumi lebih baik dimulai dari <span>kebiasaan kecil.</span></h1>
+   <p>Belajar memahami lingkungan, mencoba aksi sederhana, dan lihat bagaimana perubahan kecilmu bisa membawa dampak besar.</p>
+   <div class="hero-actions"><a class="btn" href="#belajar">Jelajahi materi <span>→</span></a><a class="btn light" href="#tantangan">Mulai aksi hijau</a></div>
+   <div class="trust"><div class="avatars"><span>🌱</span><span>♻️</span><span>🌏</span></div><span>Belajar hari ini, berdampak untuk esok.</span></div>
+  </div>
+  <div class="hero-art"><span class="floating-leaf leaf-a">🍃</span><span class="floating-leaf leaf-b">🌼</span>
+   <div class="art-blob"></div><div class="sticker">Dari Sabang<br>sampai Merauke 🇮🇩</div>
+   <div class="hero-photo"><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%238fe3ff%22/%3E%3Ccircle%20cx%3D%22326%22%20cy%3D%2264%22%20r%3D%2234%22%20fill%3D%22%23ffd23f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cellipse%20cx%3D%2270%22%20cy%3D%2250%22%20rx%3D%2234%22%20ry%3D%2213%22/%3E%3Cellipse%20cx%3D%2292%22%20cy%3D%2240%22%20rx%3D%2222%22%20ry%3D%2212%22/%3E%3C/g%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cellipse%20cx%3D%22230%22%20cy%3D%2236%22%20rx%3D%2234%22%20ry%3D%2213%22/%3E%3Cellipse%20cx%3D%22252%22%20cy%3D%2226%22%20rx%3D%2222%22%20ry%3D%2212%22/%3E%3C/g%3E%3Cpolygon%20points%3D%2210%2C205%20150%2C70%20290%2C205%22%20fill%3D%22%238b6cff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpolygon%20points%3D%22150%2C70%20126%2C102%20150%2C94%20172%2C104%22%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpolygon%20points%3D%22200%2C205%20290%2C112%20400%2C205%22%20fill%3D%22%23ff8fb1%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M0%20205%20Q100%20172%20200%20205%20T400%20195%20V300H0Z%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M0%20240%20Q100%20212%20200%20240%20T400%20232%20V300H0Z%22%20fill%3D%22%2319b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M0%20275%20Q120%20250%20220%20275%20T400%20268%20V300H0Z%22%20fill%3D%22%23c8ee4a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M60%20290%20Q74%20225.0%2064%20160%22%20fill%3D%22none%22%20stroke%3D%22%23b5702f%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22/%3E%3Cellipse%20cx%3D%2226%22%20cy%3D%22166%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-25%2060%20160%29%22/%3E%3Cellipse%20cx%3D%2294%22%20cy%3D%22166%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2825%2060%20160%29%22/%3E%3Cellipse%20cx%3D%2230%22%20cy%3D%22152%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-60%2060%20160%29%22/%3E%3Cellipse%20cx%3D%2290%22%20cy%3D%22152%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2860%2060%20160%29%22/%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%22142%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2890%2060%20160%29%22/%3E%3Ccircle%20cx%3D%2264%22%20cy%3D%22166%22%20r%3D%227%22%20fill%3D%22%23b5702f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M340%20285%20Q354%20232.5%20344%20180%22%20fill%3D%22none%22%20stroke%3D%22%23b5702f%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22/%3E%3Cellipse%20cx%3D%22306%22%20cy%3D%22186%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-25%20340%20180%29%22/%3E%3Cellipse%20cx%3D%22374%22%20cy%3D%22186%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2825%20340%20180%29%22/%3E%3Cellipse%20cx%3D%22310%22%20cy%3D%22172%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-60%20340%20180%29%22/%3E%3Cellipse%20cx%3D%22370%22%20cy%3D%22172%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2860%20340%20180%29%22/%3E%3Cellipse%20cx%3D%22340%22%20cy%3D%22162%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2890%20340%20180%29%22/%3E%3Ccircle%20cx%3D%22344%22%20cy%3D%22186%22%20r%3D%227%22%20fill%3D%22%23b5702f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" alt="Pemandangan alam hijau berkabut"><div class="photo-overlay"></div></div>
+   <div class="floating-card float-one"><span class="float-icon">🌿</span><span class="float-label">Mulai dari</span><div class="float-value">1 aksi kecil</div></div>
+   <div class="floating-card float-two"><span class="float-label">Your impact</span><div class="float-value">∞ <span style="font-size:.8rem;color:var(--green)">possibilities</span></div></div>
+  </div>
+ </div>
+ <div class="wrap"><div class="stats">
+  <div class="stat"><strong>3R</strong><span>Prinsip kelola sampah</span></div>
+  <div class="stat"><strong>4</strong><span>Topik belajar utama</span></div>
+  <div class="stat"><strong>5+</strong><span>Aksi hijau sederhana</span></div>
+  <div class="stat"><strong>1</strong><span>Bumi untuk dijaga</span></div>
+ </div></div>
+</section>
+
+<section id="belajar">
+ <div class="wrap">
+  <div class="section-head"><div><span class="eyebrow">Explore & understand</span><h2>Mulai dari yang<br>paling dekat.</h2></div><p>Kenali hal-hal sederhana yang bisa kamu lakukan untuk mengurangi sampah dan menjaga lingkungan.</p></div>
+  <div class="learning-grid">
+   <article class="learn-card"><div class="learn-icon">🍃</div><h3>Sampah Organik</h3><p>Kenali sampah alami dan cara mengolahnya menjadi kompos.</p><a href="#lab" data-lesson="Organik">Pelajari materi ↗</a></article>
+   <article class="learn-card"><div class="learn-icon">♻️</div><h3>Sampah Anorganik</h3><p>Pahami material yang dapat digunakan kembali atau didaur ulang.</p><a href="#lab" data-lesson="Anorganik">Pelajari materi ↗</a></article>
+   <article class="learn-card"><div class="learn-icon">☣️</div><h3>Sampah B3</h3><p>Ketahui jenis sampah berbahaya dan cara penanganannya.</p><a href="#lab" data-lesson="B3">Pelajari materi ↗</a></article>
+   <article class="learn-card"><div class="learn-icon">🔄</div><h3>Prinsip 3R</h3><p>Terapkan reduce, reuse, recycle dalam keseharianmu.</p><a href="#lab" data-lesson="3R">Pelajari materi ↗</a></article>
+  </div>
+ </div>
+</section>
+
+<section class="feature-section" id="fitur">
+ <div class="wrap feature-grid">
+  <div class="feature-visual"><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23ffd0dc%22/%3E%3Ccircle%20cx%3D%22200%22%20cy%3D%22130%22%20r%3D%2295%22%20fill%3D%22%23ffe27a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M200%20200%20Q195%20140%20205%2095%22%20stroke%3D%22%2314a85d%22%20stroke-width%3D%229%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cellipse%20cx%3D%22160%22%20cy%3D%22112%22%20rx%3D%2244%22%20ry%3D%2220%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-30%20160%20112%29%22/%3E%3Cellipse%20cx%3D%22248%22%20cy%3D%2292%22%20rx%3D%2244%22%20ry%3D%2220%22%20fill%3D%22%23c8ee4a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2828%20248%2092%29%22/%3E%3Cpolygon%20points%3D%22145%2C195%20255%2C195%20240%2C270%20160%2C270%22%20fill%3D%22%23ff8a5b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%22138%22%20y%3D%22185%22%20width%3D%22124%22%20height%3D%2222%22%20rx%3D%228%22%20fill%3D%22%23ff7a59%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%228%22%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22340%22%20cy%3D%22230%22%20r%3D%2210%22%20fill%3D%22%238ed9e8%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" alt="Tangan memegang tanaman muda"><div class="feature-note"><span class="eyebrow">Eco mindset</span><strong>Less waste.<br>More life.</strong><span style="font-size:.82rem;color:var(--muted)">Pilihan kecil hari ini membentuk masa depan.</span></div></div>
+  <div class="feature-copy"><span class="eyebrow">Why EcoLearn?</span><h2>Bukan cuma tahu.<br>Saatnya ikut bergerak.</h2><p>EcoLearn menggabungkan materi singkat dan aktivitas interaktif agar belajar tentang lingkungan terasa lebih dekat dengan kehidupan sehari-hari.</p>
+   <ul class="check-list"><li><span class="check">✓</span><span>Materi ringkas yang mudah dipahami</span></li><li><span class="check">✓</span><span>Game dan kuis untuk menguji pemahaman</span></li><li><span class="check">✓</span><span>Kalkulator sederhana untuk refleksi kebiasaan</span></li><li><span class="check">✓</span><span>Tantangan aksi hijau yang bisa langsung dicoba</span></li></ul>
+   <a class="btn" href="#lab">Coba Eco Lab <span>→</span></a>
+  </div>
+ </div>
+</section>
+
+
+<section class="gallery-section" id="jelajah">
+ <div class="wrap">
+  <div class="section-head"><div><span class="eyebrow">Bumi dalam cerita</span><h2>Inspirasi hijau<br>ada di sekitar kita.</h2></div><p>Mulai dari alam, ruang kota, sampai kebiasaan sehari-hari. Setiap tempat punya cerita tentang bagaimana kita bisa hidup lebih selaras dengan bumi.</p></div>
+  <div class="gallery-grid">
+   <article class="gallery-tile"><img loading="lazy" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23d4f56e%22/%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cellipse%20cx%3D%2280%22%20cy%3D%2245%22%20rx%3D%2234%22%20ry%3D%2213%22/%3E%3Cellipse%20cx%3D%22102%22%20cy%3D%2235%22%20rx%3D%2222%22%20ry%3D%2212%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22320%22%20cy%3D%2255%22%20r%3D%2228%22%20fill%3D%22%23ffd23f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M0%20220%20Q100%20150%20200%20210%20T400%20190%20V300H0Z%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M90%20270%20Q104%20195.0%2094%20120%22%20fill%3D%22none%22%20stroke%3D%22%23b5702f%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22/%3E%3Cellipse%20cx%3D%2256%22%20cy%3D%22126%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-25%2090%20120%29%22/%3E%3Cellipse%20cx%3D%22124%22%20cy%3D%22126%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2825%2090%20120%29%22/%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%22112%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-60%2090%20120%29%22/%3E%3Cellipse%20cx%3D%22120%22%20cy%3D%22112%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2860%2090%20120%29%22/%3E%3Cellipse%20cx%3D%2290%22%20cy%3D%22102%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2890%2090%20120%29%22/%3E%3Ccircle%20cx%3D%2294%22%20cy%3D%22126%22%20r%3D%227%22%20fill%3D%22%23b5702f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M210%20280%20Q224%20195.0%20214%20110%22%20fill%3D%22none%22%20stroke%3D%22%23b5702f%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22/%3E%3Cellipse%20cx%3D%22176%22%20cy%3D%22116%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-25%20210%20110%29%22/%3E%3Cellipse%20cx%3D%22244%22%20cy%3D%22116%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2825%20210%20110%29%22/%3E%3Cellipse%20cx%3D%22180%22%20cy%3D%22102%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-60%20210%20110%29%22/%3E%3Cellipse%20cx%3D%22240%22%20cy%3D%22102%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2860%20210%20110%29%22/%3E%3Cellipse%20cx%3D%22210%22%20cy%3D%2292%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2890%20210%20110%29%22/%3E%3Ccircle%20cx%3D%22214%22%20cy%3D%22116%22%20r%3D%227%22%20fill%3D%22%23b5702f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M320%20275%20Q334%20210.0%20324%20145%22%20fill%3D%22none%22%20stroke%3D%22%23b5702f%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22/%3E%3Cellipse%20cx%3D%22286%22%20cy%3D%22151%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-25%20320%20145%29%22/%3E%3Cellipse%20cx%3D%22354%22%20cy%3D%22151%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2825%20320%20145%29%22/%3E%3Cellipse%20cx%3D%22290%22%20cy%3D%22137%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-60%20320%20145%29%22/%3E%3Cellipse%20cx%3D%22350%22%20cy%3D%22137%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2860%20320%20145%29%22/%3E%3Cellipse%20cx%3D%22320%22%20cy%3D%22127%22%20rx%3D%2240%22%20ry%3D%2211%22%20fill%3D%22%231fc16b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2890%20320%20145%29%22/%3E%3Ccircle%20cx%3D%22324%22%20cy%3D%22151%22%20r%3D%227%22%20fill%3D%22%23b5702f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%22268%22%20r%3D%2216%22%20fill%3D%22%23ff6b8b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22260%22%20cy%3D%22272%22%20r%3D%2214%22%20fill%3D%22%23ffb7c5%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M280%20100%20q8-10%2016%200%20q8-10%2016%200%22%20fill%3D%22none%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M40%20110%20q6-8%2012%200%20q6-8%2012%200%22%20fill%3D%22none%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" alt="Hutan hijau dengan cahaya matahari"><div class="gallery-caption"><b>Jaga ruang hijau</b><span>Alam yang sehat adalah rumah bersama</span></div></article>
+   <article class="gallery-tile"><img loading="lazy" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%239be3f5%22/%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cellipse%20cx%3D%22300%22%20cy%3D%2250%22%20rx%3D%2234%22%20ry%3D%2213%22/%3E%3Cellipse%20cx%3D%22322%22%20cy%3D%2240%22%20rx%3D%2222%22%20ry%3D%2212%22/%3E%3C/g%3E%3Ccircle%20cx%3D%2270%22%20cy%3D%2260%22%20r%3D%2226%22%20fill%3D%22%23ffd23f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20y%3D%22250%22%20width%3D%22400%22%20height%3D%2250%22%20fill%3D%22%23fff6e0%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%2245%22%20y%3D%22120%22%20width%3D%2278%22%20height%3D%22130%22%20rx%3D%2210%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%2239%22%20y%3D%22104%22%20width%3D%2290%22%20height%3D%2222%22%20rx%3D%228%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2284%22%20cy%3D%22185%22%20r%3D%2222%22%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ctext%20x%3D%2284%22%20y%3D%22193%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20fill%3D%22%232a2140%22%20font-family%3D%22sans-serif%22%3EO%3C/text%3E%3Crect%20x%3D%22161%22%20y%3D%22120%22%20width%3D%2278%22%20height%3D%22130%22%20rx%3D%2210%22%20fill%3D%22%23ffd23f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%22155%22%20y%3D%22104%22%20width%3D%2290%22%20height%3D%2222%22%20rx%3D%228%22%20fill%3D%22%23ffd23f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22200%22%20cy%3D%22185%22%20r%3D%2222%22%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ctext%20x%3D%22200%22%20y%3D%22193%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20fill%3D%22%232a2140%22%20font-family%3D%22sans-serif%22%3EA%3C/text%3E%3Crect%20x%3D%22277%22%20y%3D%22120%22%20width%3D%2278%22%20height%3D%22130%22%20rx%3D%2210%22%20fill%3D%22%23ff6b6b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%22271%22%20y%3D%22104%22%20width%3D%2290%22%20height%3D%2222%22%20rx%3D%228%22%20fill%3D%22%23ff6b6b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22316%22%20cy%3D%22185%22%20r%3D%2222%22%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ctext%20x%3D%22316%22%20y%3D%22193%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20fill%3D%22%232a2140%22%20font-family%3D%22sans-serif%22%3EB3%3C/text%3E%3C/svg%3E" alt="Tempat sampah daur ulang berwarna"><div class="gallery-caption"><b>Pilah dengan benar</b><span>Mulai dari sampah di sekitar kita</span></div></article>
+   <article class="gallery-tile"><img loading="lazy" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23ffe27a%22/%3E%3Ccircle%20cx%3D%22200%22%20cy%3D%22120%22%20r%3D%2290%22%20fill%3D%22%23ff9ec0%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cellipse%20cx%3D%22150%22%20cy%3D%22110%22%20rx%3D%2242%22%20ry%3D%2220%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-35%20150%20110%29%22/%3E%3Cellipse%20cx%3D%22252%22%20cy%3D%22106%22%20rx%3D%2242%22%20ry%3D%2220%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2835%20252%20106%29%22/%3E%3Cellipse%20cx%3D%22160%22%20cy%3D%2270%22%20rx%3D%2242%22%20ry%3D%2220%22%20fill%3D%22%23c8ee4a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-70%20160%2070%29%22/%3E%3Cellipse%20cx%3D%22240%22%20cy%3D%2264%22%20rx%3D%2242%22%20ry%3D%2220%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2870%20240%2064%29%22/%3E%3Cellipse%20cx%3D%22200%22%20cy%3D%22150%22%20rx%3D%2242%22%20ry%3D%2220%22%20fill%3D%22%2319b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%280%20200%20150%29%22/%3E%3Cpolygon%20points%3D%22150%2C195%20250%2C195%20238%2C275%20162%2C275%22%20fill%3D%22%234dc8e8%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%22142%22%20y%3D%22185%22%20width%3D%22116%22%20height%3D%2222%22%20rx%3D%228%22%20fill%3D%22%236adcf5%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" alt="Tanaman hijau dalam pot"><div class="gallery-caption"><b>Rawat tanaman</b><span>Tambah hijau di rumahmu</span></div></article>
+   <article class="gallery-tile"><img loading="lazy" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23ffc0cf%22/%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cellipse%20cx%3D%2290%22%20cy%3D%2250%22%20rx%3D%2234%22%20ry%3D%2213%22/%3E%3Cellipse%20cx%3D%22112%22%20cy%3D%2240%22%20rx%3D%2222%22%20ry%3D%2212%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22320%22%20cy%3D%2260%22%20r%3D%2228%22%20fill%3D%22%23ffd23f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20y%3D%22245%22%20width%3D%22400%22%20height%3D%2255%22%20fill%3D%22%23c8ee4a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22120%22%20cy%3D%22215%22%20r%3D%2248%22%20fill%3D%22none%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%227%22/%3E%3Ccircle%20cx%3D%22290%22%20cy%3D%22215%22%20r%3D%2248%22%20fill%3D%22none%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%227%22/%3E%3Cpath%20d%3D%22M120%20215%20L180%20130%20L260%20130%20L290%20215%20M180%20130%20L215%20215%20L120%20215%20M260%20130%20L250%20108%22%20fill%3D%22none%22%20stroke%3D%22%236c4dff%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M150%20130%20h50%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%22238%22%20y%3D%2282%22%20width%3D%2250%22%20height%3D%2230%22%20rx%3D%226%22%20fill%3D%22%23ffd23f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22263%22%20cy%3D%2278%22%20r%3D%2210%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" alt="Sepeda terparkir di area perkotaan"><div class="gallery-caption"><b>Jelajah lebih bijak</b><span>Pilih perjalanan yang lebih ramah lingkungan</span></div></article>
+   <article class="gallery-tile"><img loading="lazy" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23ffd0dc%22/%3E%3Ccircle%20cx%3D%22200%22%20cy%3D%22130%22%20r%3D%2295%22%20fill%3D%22%23ffe27a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M200%20200%20Q195%20140%20205%2095%22%20stroke%3D%22%2314a85d%22%20stroke-width%3D%229%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cellipse%20cx%3D%22160%22%20cy%3D%22112%22%20rx%3D%2244%22%20ry%3D%2220%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-30%20160%20112%29%22/%3E%3Cellipse%20cx%3D%22248%22%20cy%3D%2292%22%20rx%3D%2244%22%20ry%3D%2220%22%20fill%3D%22%23c8ee4a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2828%20248%2092%29%22/%3E%3Cpolygon%20points%3D%22145%2C195%20255%2C195%20240%2C270%20160%2C270%22%20fill%3D%22%23ff8a5b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%22138%22%20y%3D%22185%22%20width%3D%22124%22%20height%3D%2222%22%20rx%3D%228%22%20fill%3D%22%23ff7a59%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%228%22%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22340%22%20cy%3D%22230%22%20r%3D%2210%22%20fill%3D%22%238ed9e8%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" alt="Tangan menanam bibit tanaman"><div class="gallery-caption"><b>Tumbuhkan perubahan</b><span>Aksi kecil yang dilakukan bersama</span></div></article>
+  </div>
+ </div>
+</section>
+
+<section class="eco-personality" id="gaya-hijau">
+ <div class="wrap">
+  <div class="personality-card">
+   <div>
+    <span class="eyebrow">Kenali gaya aksimu</span>
+    <h2 style="margin:13px 0">Kamu tipe pejuang bumi yang mana?</h2>
+    <p>Pilih aktivitas yang paling kamu suka. EcoLearn akan kasih ide aksi sederhana yang bisa kamu mulai.</p>
+    <div class="personality-options">
+     <button class="personality-option" data-style="rumah"><span>🏡</span>Di rumah</button>
+     <button class="personality-option" data-style="luar"><span>🚲</span>Di luar</button>
+     <button class="personality-option" data-style="kreatif"><span>🎨</span>Kreatif</button>
+    </div>
+   </div>
+   <div class="personality-result" id="personalityResult" aria-live="polite">
+    <strong>🌱 Pilih gaya aksimu!</strong>
+    <span>Rekomendasi kegiatan akan muncul di sini.</span>
+    <div class="mini-badge">✨ Temukan aksimu</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="lab">
+ <div class="wrap">
+  <div class="section-head"><div><span class="eyebrow">Learn by doing</span><h2>Eco Lab interaktif.</h2></div><p>Uji pengetahuanmu, pilah sampah, dan hitung perkiraan dampak dari kebiasaan sehari-hari.</p></div>
+  <div class="lab-grid">
+   <div class="panel"><span class="eyebrow">01 / Learn</span><h3>Materi singkat</h3><p>Pilih topik untuk melihat ringkasan dan tips pengelolaannya.</p>
+    <div class="tabs" id="tabs"><button class="tab active" data-key="Organik">Organik</button><button class="tab" data-key="Anorganik">Anorganik</button><button class="tab" data-key="B3">B3</button><button class="tab" data-key="3R">3R</button></div>
+    <div class="lesson-content" id="lessonContent" aria-live="polite"></div>
+   </div>
+   <div class="panel"><span class="eyebrow">02 / Play</span><h3>Game pilah sampah</h3><p>Pilih tempat sampah yang sesuai dengan benda yang muncul.</p>
+    <div class="score-row"><span>Skor: <b id="score">0</b></span><span>Benar beruntun: <b id="streak">0</b></span></div>
+    <div class="game-item"><span class="game-emoji" id="itemEmoji">🍌</span><div class="game-name" id="itemName">Kulit pisang</div></div>
+    <div class="bins"><button class="bin" data-bin="organik"><span>🟢</span>Organik</button><button class="bin" data-bin="anorganik"><span>🟡</span>Anorganik</button><button class="bin" data-bin="b3"><span>🔴</span>B3</button></div>
+    <div class="feedback" id="gameFeedback" aria-live="polite"></div>
+   </div>
+   <div class="panel"><span class="eyebrow">03 / Test</span><h3>Kuis lingkungan</h3><p>Jawab pertanyaan singkat untuk menguji pemahamanmu.</p>
+    <div class="progress"><span id="quizProgress"></span></div><div id="quizBox"><div class="score-row"><span id="questionNo">Pertanyaan 1/5</span><span>Skor: <b id="quizScore">0</b></span></div><h4 id="question" style="font-size:1.1rem;margin-top:13px">Sampah sisa makanan sebaiknya diolah menjadi...</h4><div class="quiz-options" id="options"></div><div class="feedback" id="quizFeedback"></div></div>
+   </div>
+   <div class="panel"><span class="eyebrow">04 / Reflect</span><h3>Kalkulator sampah plastik</h3><p>Simulasi sederhana berdasarkan jumlah barang sekali pakai yang kamu gunakan.</p>
+    <div class="range-row"><div class="range-top"><label for="bags">Kantong plastik per hari</label><output id="bagsOut">3</output></div><input id="bags" type="range" min="0" max="15" value="3"></div>
+    <div class="range-row"><div class="range-top"><label for="bottles">Botol plastik per hari</label><output id="bottlesOut">1</output></div><input id="bottles" type="range" min="0" max="10" value="1"></div>
+    <div class="range-row"><div class="range-top"><label for="recycle">Perkiraan yang didaur ulang</label><output id="recycleOut">20%</output></div><input id="recycle" type="range" min="0" max="100" step="5" value="20"></div>
+    <div class="impact-result"><span style="font-size:.8rem;color:#c0d0c6">Estimasi sampah tidak didaur ulang / tahun</span><strong id="impactKg">24.8 kg</strong><p id="impactText">Kurangi barang sekali pakai dan gunakan kembali barang yang masih layak.</p></div>
+    <p style="font-size:.75rem;margin-bottom:0">*Estimasi ilustratif: 6 g per kantong dan 25 g per botol. Bukan pengukuran langsung.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+
+<section class="journal" id="inspirasi">
+ <div class="wrap">
+  <div class="section-head"><div><span class="eyebrow">Notes from the green side</span><h2>Ide baik untuk<br>hidup sehari-hari.</h2></div><p>Mulai dari keputusan kecil yang realistis. Tidak harus sempurna untuk memberi dampak.</p></div>
+  <div class="journal-grid">
+   <article class="story featured"><div class="story-image"><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%239be3f5%22/%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cellipse%20cx%3D%22300%22%20cy%3D%2250%22%20rx%3D%2234%22%20ry%3D%2213%22/%3E%3Cellipse%20cx%3D%22322%22%20cy%3D%2240%22%20rx%3D%2222%22%20ry%3D%2212%22/%3E%3C/g%3E%3Ccircle%20cx%3D%2270%22%20cy%3D%2260%22%20r%3D%2226%22%20fill%3D%22%23ffd23f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20y%3D%22250%22%20width%3D%22400%22%20height%3D%2250%22%20fill%3D%22%23fff6e0%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%2245%22%20y%3D%22120%22%20width%3D%2278%22%20height%3D%22130%22%20rx%3D%2210%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%2239%22%20y%3D%22104%22%20width%3D%2290%22%20height%3D%2222%22%20rx%3D%228%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2284%22%20cy%3D%22185%22%20r%3D%2222%22%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ctext%20x%3D%2284%22%20y%3D%22193%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20fill%3D%22%232a2140%22%20font-family%3D%22sans-serif%22%3EO%3C/text%3E%3Crect%20x%3D%22161%22%20y%3D%22120%22%20width%3D%2278%22%20height%3D%22130%22%20rx%3D%2210%22%20fill%3D%22%23ffd23f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%22155%22%20y%3D%22104%22%20width%3D%2290%22%20height%3D%2222%22%20rx%3D%228%22%20fill%3D%22%23ffd23f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22200%22%20cy%3D%22185%22%20r%3D%2222%22%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ctext%20x%3D%22200%22%20y%3D%22193%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20fill%3D%22%232a2140%22%20font-family%3D%22sans-serif%22%3EA%3C/text%3E%3Crect%20x%3D%22277%22%20y%3D%22120%22%20width%3D%2278%22%20height%3D%22130%22%20rx%3D%2210%22%20fill%3D%22%23ff6b6b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%22271%22%20y%3D%22104%22%20width%3D%2290%22%20height%3D%2222%22%20rx%3D%228%22%20fill%3D%22%23ff6b6b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22316%22%20cy%3D%22185%22%20r%3D%2222%22%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ctext%20x%3D%22316%22%20y%3D%22193%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20fill%3D%22%232a2140%22%20font-family%3D%22sans-serif%22%3EB3%3C/text%3E%3C/svg%3E" alt="Tempat sampah terpilah untuk daur ulang" loading="lazy"></div><div class="story-body"><span class="story-tag">Panduan praktis · 4 menit</span><h3>Memulai kebiasaan memilah sampah dari rumah</h3><p>Mulai dengan tiga kategori sederhana dan kenali alur pengelolaan di lingkunganmu.</p><button data-article="sort">Baca catatan ↗</button></div></article>
+   <article class="story"><div class="story-image"><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23c9b8ff%22/%3E%3Cg%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%3E%3Cellipse%20cx%3D%22300%22%20cy%3D%2250%22%20rx%3D%2234%22%20ry%3D%2213%22/%3E%3Cellipse%20cx%3D%22322%22%20cy%3D%2240%22%20rx%3D%2222%22%20ry%3D%2212%22/%3E%3C/g%3E%3Crect%20y%3D%22250%22%20width%3D%22400%22%20height%3D%2250%22%20fill%3D%22%23fff6e0%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%2295%22%20y%3D%2250%22%20width%3D%2256%22%20height%3D%2230%22%20rx%3D%228%22%20fill%3D%22%236c4dff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%2280%22%20y%3D%2276%22%20width%3D%2286%22%20height%3D%22176%22%20rx%3D%2226%22%20fill%3D%22%23ff8a5b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22123%22%20cy%3D%22160%22%20r%3D%2226%22%20fill%3D%22%23fff%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M112%20160%20q11-18%2022%200%20q-11%2018-22%200%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M230%20120%20q0-55%2050-55%20q50%200%2050%2055%22%20fill%3D%22none%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%227%22/%3E%3Crect%20x%3D%22215%22%20y%3D%22115%22%20width%3D%22130%22%20height%3D%22135%22%20rx%3D%2214%22%20fill%3D%22%23ffd23f%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22280%22%20cy%3D%22185%22%20r%3D%2226%22%20fill%3D%22%23ff6b8b%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" alt="Botol minum pakai ulang" loading="lazy"></div><div class="story-body"><span class="story-tag">Kebiasaan · 3 menit</span><h3>Bawa barang pakai ulang tanpa ribet</h3><p>Siapkan barang yang memang sering kamu butuhkan.</p><button data-article="reuse">Baca catatan ↗</button></div></article>
+   <article class="story"><div class="story-image"><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23ffe27a%22/%3E%3Ccircle%20cx%3D%22200%22%20cy%3D%22120%22%20r%3D%2290%22%20fill%3D%22%23ff9ec0%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Cellipse%20cx%3D%22150%22%20cy%3D%22110%22%20rx%3D%2242%22%20ry%3D%2220%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-35%20150%20110%29%22/%3E%3Cellipse%20cx%3D%22252%22%20cy%3D%22106%22%20rx%3D%2242%22%20ry%3D%2220%22%20fill%3D%22%2314b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2835%20252%20106%29%22/%3E%3Cellipse%20cx%3D%22160%22%20cy%3D%2270%22%20rx%3D%2242%22%20ry%3D%2220%22%20fill%3D%22%23c8ee4a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%28-70%20160%2070%29%22/%3E%3Cellipse%20cx%3D%22240%22%20cy%3D%2264%22%20rx%3D%2242%22%20ry%3D%2220%22%20fill%3D%22%233ddc84%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%2870%20240%2064%29%22/%3E%3Cellipse%20cx%3D%22200%22%20cy%3D%22150%22%20rx%3D%2242%22%20ry%3D%2220%22%20fill%3D%22%2319b86a%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20transform%3D%22rotate%280%20200%20150%29%22/%3E%3Cpolygon%20points%3D%22150%2C195%20250%2C195%20238%2C275%20162%2C275%22%20fill%3D%22%234dc8e8%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3Crect%20x%3D%22142%22%20y%3D%22185%22%20width%3D%22116%22%20height%3D%2222%22%20rx%3D%228%22%20fill%3D%22%236adcf5%22%20stroke%3D%22%232a2140%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" alt="Tanaman tumbuh di pot" loading="lazy"></div><div class="story-body"><span class="story-tag">Di rumah · 5 menit</span><h3>Mengenal kompos dari sisa dapur</h3><p>Kenali bahan yang bisa dan tidak bisa masuk ke komposter.</p><button data-article="compost">Baca catatan ↗</button></div></article>
+  </div>
+  <div class="points-strip" id="poin">
+   <div class="points-left"><div class="points-medal">✦</div><div style="flex:1"><div class="points-caption">Perjalanan Eco kamu</div><div class="points-number"><span id="ecoPoints">0</span> <span style="font-size:.85rem;color:var(--muted);font-weight:600">Eco points</span></div><div class="points-track"><span id="pointsBar"></span></div></div></div>
+   <div class="points-level"><span>Level saat ini</span><strong id="ecoLevel">Pemula 🌱</strong><span id="pointsNext">100 poin menuju Penjelajah</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="challenge" id="tantangan">
+ <div class="wrap challenge-grid">
+  <div><span class="eyebrow">Take action today</span><h2>Satu kebiasaan baik bisa jadi awal perubahan.</h2><p>Pilih aksi hijau yang ingin kamu lakukan hari ini. Tandai setelah selesai dan pantau progres tantanganmu.</p><a class="btn light" href="#belajar">Pelajari lebih banyak ↗</a></div>
+  <div class="challenge-card"><span class="eyebrow">Your daily eco challenge</span><h3 style="font-size:1.45rem;margin-top:10px">Misi hijau hari ini 🌱</h3><div class="challenge-list" id="challengeList">
+   <label><input type="checkbox"> Membawa botol minum sendiri</label><label><input type="checkbox"> Membawa tas belanja pakai ulang</label><label><input type="checkbox"> Memilah sampah di rumah</label><label><input type="checkbox"> Mengurangi penggunaan sedotan</label><label><input type="checkbox"> Mematikan lampu saat tidak digunakan</label>
+  </div><div class="challenge-progress"><span id="challengeBar"></span></div><div class="challenge-foot"><span id="challengeCount">0 dari 5 aksi selesai</span><span id="challengePercent">0%</span></div></div>
+ </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div><span>♻️ REDUCE</span><span>🌱 REUSE</span><span>🔄 RECYCLE</span><span>🌏 SATU BUMI</span><span>💧 HEMAT AIR</span><span>🍃 KOMPOS</span><span>♻️ REDUCE</span><span>🌱 REUSE</span><span>🔄 RECYCLE</span><span>🌏 SATU BUMI</span><span>💧 HEMAT AIR</span><span>🍃 KOMPOS</span></div></div>
+<section id="waktu"><div class="wrap"><div class="section-head"><div><span class="eyebrow">Fakta mengejutkan</span><h2>Berapa lama sampah<br>bertahan di bumi?</h2></div><p>Perkiraan kasar waktu penguraian. Semakin panjang bar-nya, semakin besar alasan untuk mengurangi sekali pakai.</p></div><div class="decay"><div class="decay-row"><b>🍌 Kulit pisang</b><div class="bar"><i data-w="3" class=""></i></div><em>2–5 minggu</em></div><div class="decay-row"><b>📰 Kertas koran</b><div class="bar"><i data-w="8" class=""></i></div><em>± 2–6 bulan</em></div><div class="decay-row"><b>🥫 Kaleng aluminium</b><div class="bar"><i data-w="45" class="hot"></i></div><em>80–200 th</em></div><div class="decay-row"><b>🥤 Sedotan plastik</b><div class="bar"><i data-w="70" class="hot"></i></div><em>± 200 th</em></div><div class="decay-row"><b>🍼 Botol plastik</b><div class="bar"><i data-w="85" class="hot"></i></div><em>± 450 th</em></div><div class="decay-row"><b>🍶 Botol kaca</b><div class="bar"><i data-w="100" class="hot"></i></div><em>± 1 juta th</em></div><small>*Angka berupa perkiraan umum dan bisa berbeda tergantung kondisi lingkungan.</small></div></div></section>
+<section id="fakta" style="padding-top:0"><div class="wrap"><div class="section-head"><div><span class="eyebrow">Kartu fakta</span><h2>Ketuk, balik,<br>dan temukan.</h2></div><p>Empat fakta singkat tentang sampah dan kebiasaan hijau.</p></div><div class="flip-grid"><button class="flip" aria-label="Balik kartu"><div class="flip-in"><div class="face f" style="--c:#d6f36b"><span>🍌</span><div><h3>Dapur = tambang kompos</h3><small>Sisa dapur & kebun · ketuk untuk balik ↻</small></div></div><div class="face b"><strong>±40%</strong><p>Sebagian besar sampah rumah tangga di Indonesia berupa sisa makanan — peluang besar untuk dikompos.</p></div></div></button><button class="flip" aria-label="Balik kartu"><div class="flip-in"><div class="face f" style="--c:#8ed9e8"><span>💧</span><div><h3>Botol sekali pakai</h3><small>Hemat sejak awal · ketuk untuk balik ↻</small></div></div><div class="face b"><strong>100+</strong><p>Satu botol minum pakai ulang bisa menggantikan ratusan botol plastik sekali pakai.</p></div></div></button><button class="flip" aria-label="Balik kartu"><div class="flip-in"><div class="face f" style="--c:#ffe27a"><span>🔋</span><div><h3>Baterai bukan sampah biasa</h3><small>Bahaya tersembunyi · ketuk untuk balik ↻</small></div></div><div class="face b"><strong>B3</strong><p>Baterai bekas mengandung logam berat. Setor ke titik pengumpulan khusus.</p></div></div></button><button class="flip" aria-label="Balik kartu"><div class="flip-in"><div class="face f" style="--c:#ffb7c5"><span>♻️</span><div><h3>Bersih = laku didaur</h3><small>Tips daur ulang · ketuk untuk balik ↻</small></div></div><div class="face b"><strong>Bilas!</strong><p>Kemasan yang bersih dan kering lebih mudah diproses fasilitas daur ulang.</p></div></div></button></div></div></section>
+<section id="faq" style="padding-top:0"><div class="wrap"><div class="section-head" style="justify-content:center;text-align:center"><div><span class="eyebrow">Tanya jawab</span><h2>Pertanyaan umum</h2></div></div><div class="faq"><details><summary>Apa bedanya sampah organik dan anorganik?</summary><p>Organik berasal dari makhluk hidup dan bisa terurai alami (sisa makanan, daun). Anorganik berasal dari bahan nonhayati (plastik, kaleng, kaca).</p></details><details><summary>Dari mana sebaiknya mulai?</summary><p>Mulai dari satu kebiasaan: bawa botol minum atau pilah sampah di rumah. Konsisten kecil lebih baik daripada besar tapi sebentar.</p></details><details><summary>Apakah semua plastik bisa didaur ulang?</summary><p>Tidak semua. Cek kode dan kondisi kemasan, serta tanyakan ke bank sampah atau pengelola sampah setempat.</p></details><details><summary>Bagaimana poin dan lencana bekerja?</summary><p>Setiap kali kamu menyelesaikan kuis, game, atau misi, poin Eco bertambah dan tersimpan di perangkatmu.</p></details></div></div></section>
+<section id="gabung" style="padding-top:0"><div class="wrap"><div class="join"><span class="eyebrow">Komunitas hijau</span><h2>Gabung gerakan kecil<br>yang berdampak besar.</h2><p>Dapatkan tips lingkungan mingguan langsung di inbox-mu.</p><form id="joinForm"><input type="email" required placeholder="email@kamu.com" aria-label="Email"><button class="btn">Gabung 🌱</button></form></div></div></section>
+<section class="team" id="tim"><div class="wrap"><div class="team-card"><div class="team-logo" aria-hidden="true">&lt;/&gt;</div><div><span class="eyebrow">Dibuat oleh</span><h2><span>Syntax Error</span></h2><p>Kelompok mahasiswa yang membuat EcoLearn sebagai ruang belajar lingkungan yang seru dan mudah dipahami.</p><div class="uni">🎓 <span>Universitas Muhammadiyah<br>Prof. Dr. HAMKA</span></div></div></div></div></section>
+</main>
+
+<footer><div class="wrap"><div class="footer-grid">
+ <div class="footer-brand"><a class="brand" href="#home"><span class="brand-mark">✳</span> EcoLearn</a><p>Ruang belajar interaktif untuk memahami lingkungan dan membangun kebiasaan yang lebih berkelanjutan.</p><p style="margin-top:14px;font-weight:800">Dibuat oleh <b>Syntax Error</b><br>Universitas Muhammadiyah Prof. Dr. HAMKA</p></div>
+ <div class="footer-col"><h4>Jelajahi</h4><a href="#belajar">Materi edukasi</a><a href="#fitur">Tentang EcoLearn</a><a href="#jelajah">Galeri inspirasi</a><a href="#lab">Eco Lab</a></div>
+ <div class="footer-col"><h4>Mulai bergerak</h4><a href="#waktu">Fakta sampah</a><a href="#faq">Tanya jawab</a><a href="#tantangan">Tantangan hijau</a><a href="#lab">Game pilah sampah</a><a href="#lab">Kuis lingkungan</a></div>
+ </div><div class="copyright"><span>© 2026 EcoLearn · Syntax Error, Universitas Muhammadiyah Prof. Dr. HAMKA</span><span>Learn better. Live greener. 🌏</span></div></div></footer>
+
+<div class="article-modal" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="modal-card"><div class="modal-top"><span class="eyebrow">EcoLearn field notes</span><button class="modal-close" id="modalClose" aria-label="Tutup">✕</button></div><div class="story-tag" id="modalTag">PANDUAN</div><h3 id="modalTitle">Catatan EcoLearn</h3><div id="modalBody"></div><button class="btn small" id="modalDone">Saya mengerti</button></div>
+</div>
+<button class="back-top" id="backTop" aria-label="Kembali ke atas">↑</button>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const lessons={
+ Organik:{icon:"🍃",desc:"Sampah yang berasal dari makhluk hidup dan umumnya dapat terurai secara alami.",items:["Sisa makanan dan kulit buah","Daun dan ranting","Ampas kopi dan teh"],tip:"Pisahkan sampah organik dan olah menjadi kompos jika memungkinkan."},
+ Anorganik:{icon:"♻️",desc:"Sampah berbahan nonhayati yang sebagian dapat digunakan kembali atau didaur ulang.",items:["Botol dan kemasan plastik","Kaleng dan logam","Kertas, kardus, dan kaca"],tip:"Pastikan kemasan bersih dan kering sebelum disalurkan ke bank sampah atau fasilitas daur ulang."},
+ B3:{icon:"☣️",desc:"Sampah yang mengandung bahan berbahaya dan memerlukan penanganan khusus.",items:["Baterai bekas","Lampu tertentu","Obat kedaluwarsa dan bahan kimia rumah tangga"],tip:"Jangan campur dengan sampah biasa. Cari titik pengumpulan khusus sesuai aturan daerah."},
+ "3R":{icon:"🔄",desc:"Prinsip untuk mengurangi timbulan sampah sejak dari sumbernya.",items:["Reduce: kurangi barang sekali pakai","Reuse: gunakan kembali barang yang masih layak","Recycle: daur ulang material yang sesuai"],tip:"Prioritaskan reduce dan reuse sebelum memilih recycle."}
+};
+const lessonContent=document.getElementById('lessonContent');
+function showLesson(key){const d=lessons[key];lessonContent.innerHTML=`<h4>${d.icon} ${key}</h4><p>${d.desc}</p><ul>${d.items.map(x=>`<li>${x}</li>`).join('')}</ul><p class="tip">💡 ${d.tip}</p>`;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.key===key))}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>showLesson(b.dataset.key)));showLesson('Organik');
+document.querySelectorAll('[data-lesson]').forEach(a=>a.addEventListener('click',()=>showLesson(a.dataset.lesson)));
+
+const items=[['🍌','Kulit pisang','organik'],['🥫','Kaleng bekas','anorganik'],['🔋','Baterai bekas','b3'],['🍂','Daun kering','organik'],['🍼','Botol plastik','anorganik'],['💡','Lampu tertentu','b3'],['🥬','Sisa sayur','organik'],['📰','Koran bekas','anorganik'],['📱','Ponsel rusak','b3'],['🍎','Bonggol apel','organik']];
+let current=items[0],score=0,streak=0;
+function nextItem(){current=items[Math.floor(Math.random()*items.length)];document.getElementById('itemEmoji').textContent=current[0];document.getElementById('itemName').textContent=current[1];const gameCard=document.querySelector('.game-item');gameCard.classList.remove('bump');void gameCard.offsetWidth;gameCard.classList.add('bump')}
+document.querySelectorAll('.bin').forEach(b=>b.addEventListener('click',()=>{const fb=document.getElementById('gameFeedback');if(b.dataset.bin===current[2]){score+=10;streak++;fb.style.color='#236b4b';fb.textContent='Tepat! +10 poin 🌱'}else{streak=0;fb.style.color='#b65b39';fb.textContent=`Belum tepat. ${current[1]} termasuk ${current[2].toUpperCase()}.`}document.getElementById('score').textContent=score;document.getElementById('streak').textContent=streak;nextItem()}));nextItem();
+
+const questions=[
+ {q:"Sampah sisa makanan sebaiknya diolah menjadi...",o:["Kompos","Plastik baru","Bahan bakar kendaraan"],a:0,why:"Sisa organik dapat diolah menjadi kompos dengan proses yang sesuai."},
+ {q:"Apa arti huruf pertama dari 3R?",o:["Reduce (kurangi)","Rebut","Rusak"],a:0,why:"Reduce berarti mengurangi penggunaan barang yang berpotensi menjadi sampah."},
+ {q:"Baterai bekas perlu dipisahkan karena termasuk...",o:["Organik","B3","Kertas"],a:1,why:"Baterai bekas perlu penanganan khusus dan tidak dicampur dengan sampah biasa."},
+ {q:"Contoh tindakan reuse adalah...",o:["Membakar sampah","Memakai ulang tas belanja","Membuang botol ke sungai"],a:1,why:"Reuse berarti menggunakan kembali barang yang masih layak."},
+ {q:"Langkah awal yang baik untuk mengurangi sampah plastik adalah...",o:["Membawa botol minum sendiri","Membeli lebih banyak kemasan","Membuang sampah sembarangan"],a:0,why:"Menggunakan wadah pakai ulang membantu mengurangi kebutuhan kemasan sekali pakai."}
+];
+let qi=0,qscore=0,answered=false;
+function renderQuiz(){const q=questions[qi];if(!q){document.getElementById('quizBox').innerHTML=`<h3>Skor akhir: ${qscore}/${questions.length}</h3><p>${qscore>=4?'Hebat! Pengetahuan lingkunganmu semakin baik. 🌿':'Terus belajar dan coba lagi. Setiap langkah berarti!'}</p><button class="btn small" id="retryQuiz">Ulangi kuis ↻</button>`;document.getElementById('retryQuiz').onclick=()=>{qi=0;qscore=0;renderQuiz()};return}
+ answered=false;document.getElementById('questionNo').textContent=`Pertanyaan ${qi+1}/${questions.length}`;document.getElementById('quizScore').textContent=qscore;document.getElementById('question').textContent=q.q;document.getElementById('quizProgress').style.width=(qi/questions.length*100)+'%';document.getElementById('quizFeedback').textContent='';const box=document.getElementById('options');box.innerHTML='';q.o.forEach((t,i)=>{const b=document.createElement('button');b.className='quiz-option';b.textContent=t;b.onclick=()=>{if(answered)return;answered=true;box.querySelectorAll('button').forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('correct')});if(i===q.a){qscore++;document.getElementById('quizFeedback').textContent='Benar! '+q.why}else{b.classList.add('incorrect');document.getElementById('quizFeedback').textContent='Belum tepat. '+q.why}document.getElementById('quizScore').textContent=qscore;const next=document.createElement('button');next.className='btn small';next.textContent=qi===questions.length-1?'Lihat hasil':'Pertanyaan berikutnya →';next.style.marginTop='12px';next.onclick=()=>{qi++;renderQuiz()};box.appendChild(next)};box.appendChild(b)})}
+renderQuiz();
+
+const bags=document.getElementById('bags'),bottles=document.getElementById('bottles'),recycle=document.getElementById('recycle');
+function calcImpact(){const a=+bags.value,b=+bottles.value,r=+recycle.value;document.getElementById('bagsOut').textContent=a;document.getElementById('bottlesOut').textContent=b;document.getElementById('recycleOut').textContent=r+'%';const total=(a*.006+b*.025)*365,remaining=total*(1-r/100),saved=total-remaining;document.getElementById('impactKg').textContent=remaining.toFixed(1)+' kg';document.getElementById('impactText').textContent=`Estimasi ${saved.toFixed(1)} kg dialihkan dari sampah tidak terdaur ulang berdasarkan persentase yang kamu masukkan.`}
+[bags,bottles,recycle].forEach(x=>x.addEventListener('input',calcImpact));calcImpact();
+
+const checks=[...document.querySelectorAll('#challengeList input')];function updateChallenge(){const n=checks.filter(x=>x.checked).length,p=Math.round(n/checks.length*100);document.getElementById('challengeBar').style.width=p+'%';document.getElementById('challengeCount').textContent=`${n} dari ${checks.length} aksi selesai`;document.getElementById('challengePercent').textContent=p+'%';try{localStorage.setItem('ecolearn_challenge',JSON.stringify(checks.map(x=>x.checked)))}catch(e){}}
+try{const saved=JSON.parse(localStorage.getItem('ecolearn_challenge')||'[]');checks.forEach((x,i)=>x.checked=!!saved[i])}catch(e){}checks.forEach(x=>x.addEventListener('change',updateChallenge));updateChallenge();
+
+const menu=document.getElementById('menuToggle'),nav=document.getElementById('navlinks');menu.addEventListener('click',()=>{nav.classList.toggle('open');menu.textContent=nav.classList.contains('open')?'✕':'☰'});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.textContent='☰'}));
+
+// Eco points: saved locally on this device; no account or shared leaderboard implied.
+let ecoPoints=0;
+try{ecoPoints=Math.max(0,Number(localStorage.getItem('ecolearn_points')||0))}catch(e){}
+function renderPoints(){const level=ecoPoints>=300?'Penjaga Bumi 🌳':ecoPoints>=150?'Penggerak Hijau 🌿':ecoPoints>=50?'Penjelajah 🍀':'Pemula 🌱';const base=ecoPoints>=300?300:ecoPoints>=150?150:ecoPoints>=50?50:0;const next=ecoPoints>=300?300:base+50;document.getElementById('ecoPoints').textContent=ecoPoints;document.getElementById('ecoLevel').textContent=level;document.getElementById('pointsNext').textContent=ecoPoints>=300?'Level tertinggi tercapai':`${Math.max(0,next-ecoPoints)} poin menuju level berikutnya`;document.getElementById('pointsBar').style.width=(ecoPoints>=300?100:((ecoPoints-base)/(next-base))*100)+'%'}
+function addPoints(n,reason){ecoPoints+=n;try{localStorage.setItem('ecolearn_points',String(ecoPoints))}catch(e){}renderPoints();const toast=document.getElementById('toast');toast.textContent=`+${n} Eco points · ${reason}`;toast.classList.add('show');clearTimeout(window.ecoToastTimer);window.ecoToastTimer=setTimeout(()=>toast.classList.remove('show'),2300)}
+renderPoints();
+
+// Award points for completed interactions without changing the original learning flow.
+const originalGameFeedback=document.getElementById('gameFeedback');
+document.querySelectorAll('.bin').forEach(btn=>btn.addEventListener('click',()=>{if(btn.dataset.bin===current[2])addPoints(5,'jawaban game benar')}));
+const originalRenderQuiz=renderQuiz;
+// Hook into answer clicks by observing score increments after the answer is selected.
+const quizOptions=document.getElementById('options');
+quizOptions.addEventListener('click',e=>{if(e.target.matches('.quiz-option')&&!e.target.disabled){const q=questions[qi];if(q&&[...quizOptions.children].indexOf(e.target)===q.a)addPoints(10,'kuis benar')}});
+checks.forEach((box)=>box.addEventListener('change',()=>{if(box.checked)addPoints(5,'tantangan selesai') }));
+
+// Editorial note modal.
+const articleData={
+ sort:{tag:'PANDUAN PRAKTIS',title:'Memulai kebiasaan memilah sampah dari rumah',body:'<p>Tidak perlu langsung menyediakan banyak tempat. Mulailah dengan memisahkan sampah yang mudah membusuk, material yang berpotensi didaur ulang, dan sampah yang membutuhkan penanganan khusus.</p><p><strong>Langkah sederhana:</strong></p><ul><li>Kenali aturan pemilahan di lingkungan tempat tinggalmu.</li><li>Bilas kemasan yang masih memiliki sisa makanan, lalu keringkan.</li><li>Simpan baterai dan limbah khusus secara terpisah untuk disalurkan ke fasilitas yang tepat.</li></ul><p>Ingat, tidak semua benda yang memiliki simbol daur ulang otomatis diterima oleh setiap fasilitas.</p>'},
+ reuse:{tag:'KEBIASAAN HARIAN',title:'Bawa barang pakai ulang tanpa ribet',body:'<p>Pilih barang pakai ulang yang sesuai rutinitas, bukan sekadar membeli banyak perlengkapan baru.</p><ul><li>Simpan tas lipat di tas harian atau dekat kunci kendaraan.</li><li>Bawa botol minum yang nyaman dibersihkan.</li><li>Gunakan wadah makan bila memang sesuai kebutuhan.</li></ul><p>Tujuannya adalah mengganti penggunaan sekali pakai secara bertahap, bukan menambah barang yang akhirnya jarang digunakan.</p>'},
+ compost:{tag:'DI RUMAH',title:'Mengenal kompos dari sisa dapur',body:'<p>Beberapa sisa dapur seperti kulit buah dan sayuran dapat dikomposkan dengan metode yang sesuai. Hindari memasukkan bahan yang tidak cocok untuk sistem kompos yang kamu gunakan.</p><ul><li>Pelajari metode kompos yang sesuai dengan ruang dan kondisi rumah.</li><li>Seimbangkan bahan hijau dan bahan kering sesuai panduan metode.</li><li>Jaga kelembapan dan sirkulasi, serta pantau prosesnya.</li></ul><p>Jika baru mulai, cari panduan pengomposan dari sumber pengelolaan sampah setempat.</p>'}
+};
+const modal=document.getElementById('articleModal');
+function closeModal(){modal.classList.remove('open')}
+document.querySelectorAll('[data-article]').forEach(b=>b.addEventListener('click',()=>{const a=articleData[b.dataset.article];document.getElementById('modalTag').textContent=a.tag;document.getElementById('modalTitle').textContent=a.title;document.getElementById('modalBody').innerHTML=a.body;modal.classList.add('open');document.getElementById('modalClose').focus()}));
+document.getElementById('modalClose').addEventListener('click',closeModal);document.getElementById('modalDone').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+
+// Personal eco-action recommender.
+const styleIdeas={
+ rumah:{title:'🌿 Home Eco Hero',desc:'Kamu bisa mulai dari hal yang dekat: pilah sampah dapur, hemat listrik, dan coba membuat kompos dari sisa organik yang sesuai.',badge:'Misi: 1 sudut rumah lebih hijau'},
+ luar:{title:'🚲 Green Explorer',desc:'Bawa botol minum, gunakan tas pakai ulang, dan jika memungkinkan pilih berjalan kaki, bersepeda, atau transportasi umum untuk perjalanan yang sesuai.',badge:'Misi: bawa perlengkapan pakai ulang'},
+ kreatif:{title:'🎨 Reuse Creator',desc:'Ubah barang yang masih layak menjadi sesuatu yang berguna. Coba gunakan kembali stoples, kardus, atau kain bekas dengan aman dan kreatif.',badge:'Misi: satu karya dari barang guna ulang'}
+};
+document.querySelectorAll('.personality-option').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('.personality-option').forEach(x=>x.classList.remove('selected'));
+ btn.classList.add('selected');
+ const idea=styleIdeas[btn.dataset.style];
+ document.getElementById('personalityResult').innerHTML=`<strong>${idea.title}</strong><span>${idea.desc}</span><div class="mini-badge">✨ ${idea.badge}</div>`;
+}));
+
+// Gentle scroll reveals and active section indication.
+const revealTargets=document.querySelectorAll('section .section-head, .learn-card, .feature-visual, .feature-copy, .panel, .story, .challenge-card, .challenge-grid>div');
+revealTargets.forEach(el=>el.classList.add('reveal'));
+if('IntersectionObserver' in window){const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}}),{threshold:.12});revealTargets.forEach(el=>revealObserver.observe(el))}else revealTargets.forEach(el=>el.classList.add('visible'));
+const backTop=document.getElementById('backTop');window.addEventListener('scroll',()=>{backTop.classList.toggle('show',window.scrollY>600)},{passive:true});backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const sections=[...document.querySelectorAll('main section[id]')],navAnchors=[...document.querySelectorAll('.navlinks a')];if('IntersectionObserver' in window){const navObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){navAnchors.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id))}}),{rootMargin:'-35% 0px -55% 0px'});sections.forEach(s=>navObserver.observe(s))}
+
+</script>
+
+<canvas id="confetti"></canvas><div id="prog"></div>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// dark mode
+const nr=$('.navright'),db=document.createElement('button');db.className='icon-btn dark-btn';db.setAttribute('aria-label','Ganti tema');nr.prepend(db);
+const setT=t=>{document.documentElement.dataset.theme=t;db.textContent=t==='dark'?'☀️':'🌙'};
+setT('light');db.onclick=()=>setT(document.documentElement.dataset.theme==='dark'?'light':'dark');
+// nav link
+const nl=$('#navlinks');nl.insertAdjacentHTML('beforeend','<a href="#waktu">Fakta</a>');
+// scroll progress
+addEventListener('scroll',()=>{$('#prog').style.width=scrollY/(document.documentElement.scrollHeight-innerHeight)*100+'%'},{passive:true});
+// falling leaves
+const hero=$('.hero'),cv=document.createElement('canvas');cv.id='leaves';hero.prepend(cv);const cx=cv.getContext('2d');let W,H,ls=[];
+const rs=()=>{W=cv.width=hero.offsetWidth;H=cv.height=hero.offsetHeight};rs();addEventListener('resize',rs);
+const em=['🍃','🌿','🍂','🌼'];for(let i=0;i<16;i++)ls.push({x:Math.random()*2000,y:Math.random()*800,s:14+Math.random()*16,v:.3+Math.random()*.7,r:Math.random()*6,e:em[i%4],p:Math.random()*6});
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)(function f(){cx.clearRect(0,0,W,H);ls.forEach(l=>{l.y+=l.v;l.p+=.02;l.x+=Math.sin(l.p)*.6;l.r+=.01;if(l.y>H+30){l.y=-30;l.x=Math.random()*W}cx.save();cx.globalAlpha=.55;cx.translate(l.x%W,l.y);cx.rotate(l.r);cx.font=l.s+'px serif';cx.fillText(l.e,0,0);cx.restore()});requestAnimationFrame(f)})();
+// count-up stats
+const tg=[['3R',3,'R'],['4',4,''],['5+',5,'+'],['1',1,'']];
+$$('.stat strong').forEach((el,i)=>{el.dataset.n=tg[i][1];el.dataset.s=tg[i][2]});
+const cnt=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cnt.unobserve(e.target);const n=+e.target.dataset.n,s=e.target.dataset.s;let t=0;const id=setInterval(()=>{t++;e.target.textContent=Math.min(n,t)+s;if(t>=n)clearInterval(id)},260)}),{threshold:.6});$$('.stat strong').forEach(x=>cnt.observe(x));
+// decay bars
+const bo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){$$('.bar i').forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+'%',i*140));bo.disconnect()}}),{threshold:.3});const dc=$('.decay');dc&&bo.observe(dc);
+// flip
+$$('.flip').forEach(f=>f.onclick=()=>f.classList.toggle('on'));
+// 3D tilt
+$$('.learn-card,.story').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(700px) rotateX(${-y*8}deg) rotateY(${x*8}deg) translateY(-6px)`});c.addEventListener('mouseleave',()=>c.style.transform='')});
+// confetti
+const cf=$('#confetti'),cc=cf.getContext('2d');
+function boom(){cf.width=innerWidth;cf.height=innerHeight;const cols=['#d6f36b','#207653','#ff9c5b','#ffb7c5','#8ed9e8','#ffe27a'];const ps=Array.from({length:140},()=>({x:innerWidth/2,y:innerHeight*.6,vx:(Math.random()-.5)*16,vy:-Math.random()*16-4,c:cols[Math.random()*6|0],s:5+Math.random()*6,r:Math.random()*6}));let n=0;(function f(){cc.clearRect(0,0,cf.width,cf.height);ps.forEach(p=>{p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.r+=.2;cc.fillStyle=p.c;cc.save();cc.translate(p.x,p.y);cc.rotate(p.r);cc.fillRect(0,0,p.s,p.s*.6);cc.restore()});if(++n<110)requestAnimationFrame(f);else cc.clearRect(0,0,cf.width,cf.height)})()}
+const say=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)};
+$('#joinForm').onsubmit=e=>{e.preventDefault();boom();say('🎉 Selamat datang di komunitas hijau!');e.target.reset()};
+let done=false;$('#challengeList').addEventListener('change',()=>{const all=$$('#challengeList input').every(i=>i.checked);if(all&&!done){done=true;boom();say('🏆 Semua misi selesai. Kamu hebat!')}if(!all)done=false});
+// reveal for new sections
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target)}}),{threshold:.1});
+$$('.decay,.flip,.faq details,.join').forEach(el=>{el.classList.add('reveal');ro.observe(el)});
+})();
+</script>
+</body>
+</html>
